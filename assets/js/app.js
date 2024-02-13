@@ -156,7 +156,13 @@ const onPostUpdate = (ele) => {
             PostArray[getIndexObj].title = updateObj.title;
             PostArray[getIndexObj].body = updateObj.body;
             PostArray[getIndexObj].userId = updateObj.userId;
-            // templating(PostArray)
+            // updateBtn.classList.add('d-none');
+            // submitBtn.classList.remove('d-none')
+            // PostArray.reset()
+            updateBtn.classList.add('d-none');
+            submitBtn.classList.remove('d-none')
+                // templating(PostArray)
+            postForm.reset()
             Swal.fire({
                 title: "Do you want to save the changes?",
                 showDenyButton: true,
