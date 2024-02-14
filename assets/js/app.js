@@ -89,6 +89,32 @@ const templating = (arr) => {
     });
     postContainer.innerHTML = result
 }
+
+const createCard = (postobj) => {
+    let card = document.createElement('div');
+    card.className = "card mb-4"
+    card.id = postobj.id;
+    card.innerHTML = `
+            <div class="card-header">
+               <h2>${postobj.title}</h2>
+           </div>
+            <div class="card-body">
+                <p>${postobj.body}</p>
+            </div>
+           <div class="card-footer  d-flex justify-content-between">
+                 <button class="btn btn-outline-primary" onclick="onEdit(this)">
+                      Edit
+                 </button>
+                 <button class="btn btn-outline-danger"onclick="onDelete(this)">
+                     Delete
+                 </button>
+          </div>
+
+                         `;
+    postContainer.append(card)
+    cl(card)
+    Swal.fire("new Post is added!");
+}
 const createPost = (postobj) => {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", postUrl, true);
@@ -98,8 +124,9 @@ const createPost = (postobj) => {
             cl(xhr.response);
             postobj.id = JSON.parse(xhr.response).id;
             PostArray.push(postobj)
-            templating(PostArray)
-            Swal.fire("new Post is added!");
+            createCard(postobj)
+                // templating(PostArray) 
+
         }
     }
 }
